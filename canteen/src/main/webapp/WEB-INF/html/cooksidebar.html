@@ -1,0 +1,74 @@
+
+        <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar" th:fragment="cooksidebar">
+  
+                   <ul class="nav">
+                   
+                   
+                    <li class="nav-item nav-profile">
+   <div class="user-info">
+           <div class="nav-link">
+              <div class="user-wrapper">
+                <div class="profile-image">
+                <img src="/images/er.jpg" alt="profile image"/>
+                </div>
+                
+           
+                
+                <div class="text-wrapper">
+                  <p class="profile-name">Kary Johns</p>
+                  <div>
+                    <small class="designation text-muted">Cook</small>
+                    <span class="status-indicator online"></span>
+                  </div>
+                </div>
+              </div>
+                   <a  th:href="@{/cook/userprofile}" class="btn btn-success btn-block">Visit Profile</a>
+            </div>
+         
+            </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/cook/cookview}">
+                <i class = "glyphicon glyphicon-home text-muted" >
+                <img src="" alt="" /></i>
+                <span class="menu-title">Dashboard</span>
+              </a>
+            </li>
+          <li class="nav-item">
+          <a class="nav-link" th:href="@{/cook/order}">
+              <i class = "glyphicon glyphicon-th-list text-muted" >
+                <img src="" alt="" /></i>
+                <span class="menu-title">Menu List</span>
+              </a>
+           </li>
+                  <li class="nav-item">
+              <a class="nav-link" >
+                <i class = "glyphicon glyphicon-cog text-muted" >
+                <img src="" alt="" /></i>
+                <span class="menu-title">Settings<i class="fa fa-sort-down"></i></span>
+              </a>
+            </li> 
+               <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#sample-pages" aria-expanded="false" aria-controls="sample-pages">
+                <i class = "glyphicon glyphicon-cutlery text-muted" >
+                <img src="" alt="" /></i>
+                <span class="menu-title">Orders<i class="fa fa-sort-down"></i></span>
+              </a>
+              <div class="collapse" id="sample-pages">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" th:href="@{/cook/subOrder}">
+                      Patients
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" th:href="@{/cook/subOrder}">
+                     Staff
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            
+          </ul>
+        </nav>

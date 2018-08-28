@@ -1,0 +1,81 @@
+
+        <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar" th:fragment="adminsidebar">
+  
+                   <ul class="nav">
+                   
+                   
+                    <li class="nav-item nav-profile">
+   <div class="user-info">
+           <div class="nav-link">
+              <div class="user-wrapper">
+                <div class="profile-image">
+                <img src="/images/er.jpg" alt="profile image"/>
+                </div>
+                
+           
+                
+                <div class="text-wrapper">
+                  <p class="profile-name">Yugo Slavia</p>
+                  <div>
+                    <small class="designation text-muted">Admin</small>
+                    <span class="status-indicator online"></span>
+                  </div>
+                </div>
+              </div>
+                   <a  th:href="@{/admin/adminprofile}" class="btn btn-success btn-block">Visit Profile</a>
+            </div>
+         
+            </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/admin/adminiview}">
+                <i class = "glyphicon glyphicon-home text-muted" >
+                <img src="" alt="" /></i>
+                <span class="menu-title">Dashboard</span>
+              </a>
+            </li>
+                <li class="nav-item">
+              <a class="nav-link" th:href="@{/admin/nationalitylist}">
+            <i class = "glyphicon glyphicon-flag text-muted" >
+                <img src="" alt="" /></i>
+                <span class="menu-title">Nationality</span>
+              </a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" th:href="@{/admin/salutationlist}">
+            <i class = "glyphicon glyphicon-map-marker text-muted" >
+                <img src="" alt="" /></i>
+                <span class="menu-title">Salutation</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/admin/departmentlist}">
+            <i class = "glyphicon glyphicon-briefcase text-muted" >
+                <img src="" alt="" /></i>
+                <span class="menu-title">Locations</span>
+              </a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" th:href="@{/admin/genderlist}">
+            <i class = "glyphicon glyphicon-cog text-muted" >
+                <img src="" alt="" /></i>
+                <span class="menu-title">Gender</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/admin/users}">
+                <i class = "glyphicon glyphicon-user text-muted" >
+                <img src="" alt="" /></i>
+                <span class="menu-title">Users</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/admin/rolelist}">
+                <i class = "glyphicon glyphicon-modal-window text-muted" >
+                <img src="" alt="" /></i>
+                <span class="menu-title">Roles</span>
+              </a>
+            </li>
+            
+          </ul>
+        </nav>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="log :: log">
+</head>
+
+<body>
+
+	<div id="wrapper">
+		<div class="container-scroller">
+			<div
+				class="container-fluid page-body-wrapper full-page-wrapper auth-page">
+				<div
+					class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+					<div class="overlay overlay-bg"></div>
+					<div class="row w-100">
+						<div class="col-lg-4 mx-auto">
+							<div class="auto-form-wrapper">
+
+								<hgroup>
+									<h1 style="text-align: center; padding-bottom: 30px;">Welcome</h1>
+									<p>
+										<span class="fa-stack fa-lg"> </span>
+									</p>
+								</hgroup>
+								<div id="msg"></div>
+								<form action="#" th:action="@{/login}" th:object="${user}"
+									method="post">
+									<div class="form-group">
+										<label class="label">Username</label>
+										<div class="input-group">
+											<input type="text" th:field="*{username}"
+												class="form-control" placeholder="Username" />
+											<div class="input-group-append">
+												<span class="input-group-text"> <i
+													class="mdi mdi-account"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="label">Password</label>
+										<div class="input-group">
+											<input type="password" th:field="*{password}"
+												class="form-control" placeholder="*********" />
+											<div class="input-group-append">
+												<span class="input-group-text"> <i
+													class="mdi mdi-key"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<button type="submit"
+											class="btn btn-primary submit-btn btn-block">Login</button>
+									</div>
+									<div class="form-group d-flex justify-content-between">
+										<div class="form-check form-check-flat mt-0">
+											<label class="form-check-label"> <input
+												type="checkbox" class="form-check-input" /> Keep me signed
+												in
+											</label>
+										</div>
+										<a href="#" class="text-small forgot-password text-black">Forgot
+											Password</a>
+									</div>
+									<div class="form-group"></div>
+								</form>
+							</div>
+							<ul class="auth-footer">
+								<li><a href="#">Conditions</a></li>
+								<li><a href="#">Help</a></li>
+								<li><a href="#">Terms</a></li>
+							</ul>
+							<p class="footer-text text-center">copyright © 2018. Designed
+								by <a href="https://mhokaeunice.wordpress.com" target = "_blank" style = "color:#39d192;">Eunice Mhoka.</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script th:utext="${msg}"></script>
+	<script th:if="${param.error}">
+		setError('Your login credentials are not correct. Please try again!!')
+	</script>
+</body>
+</html>

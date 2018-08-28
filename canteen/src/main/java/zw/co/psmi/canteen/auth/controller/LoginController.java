@@ -1,0 +1,64 @@
+package zw.co.psmi.canteen.auth.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import lombok.extern.slf4j.Slf4j;
+import zw.co.psmi.canteen.auth.controller.LoginController;
+import zw.co.psmi.canteen.auth.entity.Login;
+import zw.co.psmi.canteen.auth.entity.User;
+import zw.co.psmi.canteen.auth.service.UserService;
+
+@Controller
+@Slf4j
+public class LoginController {
+@Autowired
+private UserService userService;
+    @RequestMapping("/")
+    public ModelAndView index(ModelAndView model) {
+        SecurityContextHolder.clearContext();
+        model.addObject("user", new User());
+        
+        model.setViewName("index");
+        return model;
+    }
+    
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView login(ModelAndView model, @ModelAttribute User user) {        
+        model.setViewName("index");
+        return model;
+        
+        
+        
+    }
+    @RequestMapping(value = "/roleasses", method = RequestMethod.GET)
+    public String roleAsses(Model model, @AuthenticationPrincipal Login login) {
+    	String username = login.getUsername();
+    	User user = userService.findByUsername(username);
+        if(user.getRole().getRoleName().toLowerCase().equals("cook")){       	
+            return "/cook/cookview";
+        }else if(user.getRole().getRoleName().toLowerCase().equals("patient")){        	
+            return "/users/userview";
+        }else if(user.getRole().getRoleName().toLowerCase().equals("dietician")){       	
+            return "/dietician/dieticianview";
+        }else if(user.getRole().getRoleName().toLowerCase().equals("doctor")){       	
+            return "/doctor/docview";
+        }
+        else if(user.getRole().getRoleName().toLowerCase().equals("staff")){       	
+            return "/users/userview";
+        }
+        else if(user.getRole().getRoleName().toLowerCase().equals("administrator")){       	
+            return "/admin/adminiview";
+        }
+        return "index";
+   }
+    
+
+
+}

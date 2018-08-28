@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="head :: head"> </head>
+<body> 
+
+ <div class=" container-scroller">
+  <nav th:replace ="header::header"></nav>
+           
+  <div class="container-fluid">
+     <div class="row row-offcanvas row-offcanvas-right">
+     <nav th:replace ="adminsidebar::adminsidebar"></nav>  
+ <div class="content-wrapper" id = "content-wrapper">
+          <h4 class="page-heading mb-4">Create User</h4>
+          
+                <div id="msg"></div>
+               <form th:action="@{/admin/createuserform}" th:object="${user}" method="post"> 
+           <div class="well" > 
+               <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6" align="right">Name</div>
+                  <div class="col-lg-6 col-md-6 col-sm-6"><input type="text" th:field="${user.name}"  class="form-control" placeholder = "- - - - enter name - - - -" required="required"/></div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6" align="right">Surname</div>
+                  <div class="col-lg-6 col-md-6 col-sm-6"><input type="text" th:field="${user.surname}"   placeholder = "- - - - enter surname - - - -" class="form-control" required="required"/></div>
+                </div>
+                
+                  <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6" align="right">Username</div>
+                  <div class="col-lg-6 col-md-6 col-sm-6"><input type="text" th:field="${user.username}"  placeholder = "- - - - enter username - - - -" class="form-control" required="required"/></div>
+                </div>
+                
+                 <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6" align="right">Password</div>
+                  <div class="col-lg-6 col-md-6 col-sm-6"><input type="password" id = "password"  placeholder = "- - - - enter password - - - -" th:field="${user.password}"  class="form-control"  required="required"  /></div>
+                </div>
+       
+                    
+       <div class="well">
+            <div class = "row">
+		  <div class="col-lg-6 col-md-6 col-sm-6" align='right'>Role</div>
+		  <div class="col-lg-6 col-md-6 col-sm-6">
+          <select  data-live-search="true" class="form-control"   data-style="btn-default" th:field="${users.role}" required = "required">
+          <option value="">- - - - select - - - -</option> 
+                  <option th:each="role : ${roles}" 
+                   th:value="${role.id}" 
+                   th:text="${role.roleName}">
+                  </option> 
+          </select>
+		  </div>
+           </div> 
+                  
+         <div class = "row">
+		  <div class="col-lg-6 col-md-6 col-sm-6" align='right'>Department</div>
+		  <div class="col-lg-6 col-md-6 col-sm-6">
+          <select  data-live-search="true" class="form-control" th:field="${users.department}" required = "required">
+          <option value="">- - - - select - - - -</option> 
+                  <option th:each="department : ${departments}" 
+                   th:value="${department.id}" 
+                   th:text="${department.departmentName} +' '+ ${department.subDepartment}">
+                  </option> 
+          </select>
+		  </div>
+           </div>
+               
+  
+           </div>
+           </div>
+            
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6" align='right'> 
+                    <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+                    </div>
+           
+                    <div class="col-lg-6 col-md-6 col-sm-6"> 
+                   <a  th:href="@{/admin/users}" class="btn btn-primary">Cancel</a>
+                   </div>
+                 </div>
+           </form>
+         
+
+        </div>
+     </div>
+    </div>   
+           
+        
+  <div th:replace ="footer::footer"></div>
+ </div>  
+<script th:utext="${msg}"></script>
+ </body>
+</html>

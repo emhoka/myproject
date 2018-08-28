@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="homeCss :: homeCss"> </head>
+<head lang="en" th:replace="loginCss :: loginCss"> </head>
+
+<body >  
+ <div id="wrapper">
+ <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+      <div class="top-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-md-6">
+             <a th:href = "@{/index}" >  <span class = "fa fa-phone"></span></a> 
+            </div>
+            <div class="col-sm-6 col-md-6">
+              <p class="bold text-right"><span class = "fa fa-phone"></span>  +263 784 982 541</p>
+            </div>
+          </div>
+        </div>
+      </div>
+</nav>
+
+ 
+     <section id="service" class="home-section nopadding paddingtop-60">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-6 col-md-6">
+
+         <div class="banner-content wow fadeInDown"  data-wow-offset="0" data-wow-delay="0.1s">
+								<h1 >
+								Our Services	
+										
+							</h1>
+							<p class="pt-10 pb-10" style = "color:black; font-size:18px;">
+								We provide personalized nutritional care for our patients. From the moment you experience our food we want you to know that it's ours. What you see. What you hear. What you smell. The smile of the staff. The touch of a clean plate and, last but not least, the taste of good food. In healthcare you set out clear specifications for what you need. Our responsibility is then also clear. While they focus on the patients, we can focus on the food.
+							</p>
+							<a  th:href="@{/users/ordering}" class = "primary-btn text-uppercase" >Place Your Order</a>
+							</div>
+
+          </div>
+        
+  <div class="col-sm-6 col-md-6">
+            <div class="wow fadeInUp" data-wow-delay="0.2s">
+              <img src="/images/cooker.png" class="img-responsive" alt="" height = "200px" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ </div>
+ 
+      
+    </body>
+</html>

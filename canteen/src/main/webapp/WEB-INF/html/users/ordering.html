@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="head :: head"> </head>
+<body> 
+
+ <div class=" container-scroller">
+  <nav th:replace ="header::header"></nav>
+           
+  <div class="container-fluid">
+     <div class="row row-offcanvas row-offcanvas-right">
+     <nav th:replace ="usersidebar::usersidebar"></nav> 
+    
+ <div class="content-wrapper">
+          <h4 class="page-heading mb-4">Place Your Order</h4>
+          
+            <div class="line"></div>
+                <div id="msg"></div>
+          
+        
+       
+                         <!-- Content Start Here -->
+<form th:action="@{/users/orderingform}" th:object="${subOrders}" method="post">  
+  
+     <div class="well" > 
+     
+     
+     
+     
+     
+           <div class = "row">
+		  <div class="col-lg-6 col-md-6 col-sm-6" align='right'>Starch</div>
+		  <div class="col-lg-6 col-md-6 col-sm-6">
+          <select  data-live-search="true"  class="form-control" th:field="${subOrderss.starch}" required = "required">
+           <option value="">- - - -  select - - - -</option> 
+                  <option th:each="starch : ${starchs}"
+                   th:value="${starch.id}" 
+                   th:text="${starch.starchName}">
+                  </option> 
+          </select>
+		  </div>
+           </div>
+                <br />   
+              
+               <div class = "row">
+		  <div class="col-lg-6 col-md-6 col-sm-6" align='right'>Protein</div>
+		  <div class="col-lg-6 col-md-6 col-sm-6">
+          <select  data-live-search="true" class="form-control" th:field="${subOrderss.relish}" required = "required">
+           <option value="">- - - -  select - - - -</option> 
+                  <option th:each="relish : ${relishs}" 
+                   th:value="${relish.id}" 
+                   th:text="${relish.relishName}">
+                  </option> 
+          </select>
+		  </div>
+           </div>
+           <br />
+           
+            <div class = "row">
+		  <div class="col-lg-6 col-md-6 col-sm-6" align='right'>Salad</div>
+		  <div class="col-lg-6 col-md-6 col-sm-6">
+          <select  data-live-search="true" class="form-control" th:field="${subOrderss.salad}" required = "required">
+          <option value="">- - - -  select - - - -</option> 
+                  <option th:each="salad : ${salads}" 
+                   th:value="${salad.id}" 
+                   th:text="${salad.saladName}">
+                  </option> 
+          </select>
+		  </div>
+           </div>  
+                </div>
+                
+                   <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6" align='right'> 
+                    <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+                    </div>
+           
+                    <div class="col-lg-6 col-md-6 col-sm-6"> 
+                   <a   th:href="@{/users/ordering}" class="btn btn-primary">Cancel</a>
+                   </div>
+                 </div>
+ </form>
+           
+           
+              </div>
+            </div>
+          </div>
+       
+           
+        
+  <div th:replace ="footer::footer"></div>
+ </div>  
+
+<script th:utext="${msg}"></script>
+ </body>
+</html>

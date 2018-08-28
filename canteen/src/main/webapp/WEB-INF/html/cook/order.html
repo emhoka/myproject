@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="head :: head"> </head>
+<body> 
+
+ <div class=" container-scroller">
+  <nav th:replace ="header::header"></nav>
+           
+  <div class="container-fluid">
+     <div class="row row-offcanvas row-offcanvas-right">
+     <nav th:replace ="cooksidebar::cooksidebar"></nav> 
+    
+ <div class="content-wrapper">
+          <h4 class="page-heading mb-4">Menu list</h4>
+          
+            <div class="line"></div>
+                <div id="msg"></div>
+          
+    <div class="well" >
+
+<div class="panel panel-default" >
+<div class="panel-heading" >
+            <a data-toggle="collapse" data-parent="#accordion" th:href="@{#filterPanel}" th:style = "'color:black;'">STARCH
+            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" th:href="@{#filterPanel}">
+                <i class="glyphicon glyphicon-chevron-down"></i>
+            </span>
+           </a>
+</div>
+ <div id="filterPanel" class="panel-collapse panel-collapse collapse">
+        <div class="panel-body">
+ 
+   
+ 
+  <form>
+  <div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-9">
+   <a th:href="@{/cook/starch}"><span class="glyphicon glyphicon-plus" title="Add"></span></a>
+   </div>
+  
+  </div>
+    <br />
+</form>   
+      
+ <div class="table-responsive">
+<table class="table center-aligned-table" id = "dsTable">
+      <tbody>
+              <tr data-th-each="starch : ${starchs}">
+                         <td data-th-text="${starch.starchName}"></td>
+                     <td>
+                           <a value="Delete" onclick="deleteRow(this)">
+                            <span class="glyphicon glyphicon-remove text-danger"  title="delete entry"></span>
+                           </a>  </td>
+               </tr>
+      </tbody>
+    </table>
+    </div>
+   
+
+</div>
+</div>
+</div>
+
+
+<div class="panel panel-default" >
+<div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#accordion" th:href="@{#filterPanel1}" th:style = "'color:black;'">PROTEIN
+            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" th:href="@{#filterPanel1}">
+                <i class="glyphicon glyphicon-chevron-down"></i>
+            </span>
+        </a>
+</div>
+ <div id="filterPanel1" class="panel-collapse panel-collapse collapse">
+        <div class="panel-body">
+  <form>
+  <div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-9">
+   <a th:href="@{/cook/relish}"><span class="glyphicon glyphicon-plus" title="Add"></span></a>
+   </div>
+  
+  </div>
+    <br />
+</form>
+ 
+ <div class="table-responsive">
+<table class="table center-aligned-table" id = "dsTable">
+      <tbody>
+              <tr data-th-each="relish : ${relishs}">         
+                         <td data-th-text="${relish.relishName}"></td>
+                     <td>
+                           <a value="Delete" onclick="deleteRow(this)">
+                            <span class="glyphicon glyphicon-remove text-danger"  title="delete entry"></span>
+                           </a></td>
+               </tr>
+      </tbody>
+    </table>
+    </div>
+        
+        
+        
+</div>
+</div>
+</div>
+
+
+<div class="panel panel-default" >
+<div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#accordion" th:href="@{#filterPanel2}" th:style = "'color:black;'">SALADS
+            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" th:href="@{#filterPanel2}">
+                <i class="glyphicon glyphicon-chevron-down"></i>
+            </span>
+        </a>
+</div>
+ <div id="filterPanel2" class="panel-collapse panel-collapse collapse">
+        <div class="panel-body">
+  
+ <form>
+  <div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-9">
+   <a th:href="@{/cook/salad}"><span class="glyphicon glyphicon-plus" title="Add"></span></a>
+   </div>
+  
+  </div>
+    <br />
+</form>   
+        
+ <div class="table-responsive">
+<table class="table center-aligned-table" id = "dsTable">
+      <tbody>
+              <tr data-th-each="salad : ${salads}">    
+                         <td data-th-text="${salad.saladName}"></td>
+                     <td>
+                           <a value="Delete" onclick="deleteRow(this)">
+                            <span class="glyphicon glyphicon-remove text-danger"  title="delete entry"></span>
+                           </a> </td>
+               </tr>
+      </tbody>
+    </table>
+    </div>      
+        
+</div>
+</div>
+</div>  
+    
+</div>
+        </div>
+     </div>
+    </div>   
+           
+        
+  <div th:replace ="footer::footer"></div>
+ </div>  
+
+<script th:utext="${msg}"></script>
+ </body>
+</html>
+
