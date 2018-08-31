@@ -39,7 +39,7 @@
                           <th>ID</th>
                           <th>Name</th>
 						 <th>Creation Date</th>
-                         <th>Action</th>
+                         <th>Delete</th>
                     </tr>
             </thead>
 			
@@ -49,8 +49,8 @@
         <td data-th-text="${role.id}">...</td>
         <td data-th-text="${role.roleName}">...</td>
         <td data-th-text="${role.creationTime}">...</td>
-        <td><a th:href="@{'/admin/role'}"><span class="glyphicon glyphicon-edit" title="edit"></span></a>
-        </td>
+         <td><a th:href="@{'/admin/deleterole/' + ${role.id}}"> <span class="glyphicon glyphicon-remove-circle text-danger" title="delete"></span></a>
+       </td>
 </tr>
 			</tbody>
  

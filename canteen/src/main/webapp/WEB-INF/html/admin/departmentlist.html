@@ -41,7 +41,7 @@
                           <th>Sub department</th>
 						 <th>Location</th>
 						 <th>Creation Date</th>
-                         <th>Action</th>
+                         <th>Edit</th>
                     </tr>
             </thead>
 			
@@ -53,8 +53,8 @@
         <td data-th-text="${department.subDepartment}">...</td>
         <td data-th-text="${department.location}">...</td>
         <td data-th-text="${department.creationTime}">...</td>
-        <td><a th:href="@{'/admin/department'}"><span class="glyphicon glyphicon-edit" title="edit"></span></a>
-        </td>
+        <td><a > <span class="glyphicon glyphicon-edit" title="delete"></span></a>
+       </td>
 </tr>
 			</tbody>
  

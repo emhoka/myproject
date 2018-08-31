@@ -6,11 +6,14 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.slf4j.Slf4j;
+import zw.co.psmi.canteen.admin.entity.Department;
+import zw.co.psmi.canteen.admin.entity.Role;
 import zw.co.psmi.canteen.auth.entity.Login;
 import zw.co.psmi.canteen.cook.entity.Relish;
 import zw.co.psmi.canteen.cook.entity.Salad;
@@ -43,6 +46,13 @@ public class MenuController {
 		 model.addAttribute("relishs", relish);
 		 return "/cook/relish";
 		}
+	 @RequestMapping(value = "/cook/deleterelish//{Id}", method = RequestMethod.GET)
+	   public String deleterelish( @PathVariable("Id") Long Id,   @ModelAttribute Department department, @ModelAttribute Role role,  Model model, RedirectAttributes redirectAttributes) {
+		 String msg = relishService.delete(Id);
+		 redirectAttributes.addFlashAttribute("msg", "setMsg('" + msg + "')");
+return "redirect:/cook/order";
+	    }
+	 
 	 
 	 @RequestMapping(value = "/cook/relishform", method = RequestMethod.POST)
 	    public String relishform(@ModelAttribute Relish relish, Model model, RedirectAttributes redirectAttributes) {
@@ -57,6 +67,12 @@ public class MenuController {
 		 model.addAttribute("starchs", starch);
 		 return "/cook/starch";
 		}
+	 @RequestMapping(value = "/cook/deletestarch//{Id}", method = RequestMethod.GET)
+	   public String deletestarch( @PathVariable("Id") Long Id,  Model model, RedirectAttributes redirectAttributes) {
+		 String msg = starchService.delete(Id);
+		 redirectAttributes.addFlashAttribute("msg", "setMsg('" + msg + "')");
+   return "redirect:/cook/order";
+	    }
 	 @RequestMapping(value = "/cook/starchform", method = RequestMethod.POST)
 	    public String starchform(@ModelAttribute Starch starch, Model model, RedirectAttributes redirectAttributes) {
 	     String msg = this.starchService.save(starch);
@@ -70,6 +86,13 @@ public class MenuController {
 		 model.addAttribute("salads", salad);
 		 return "/cook/salad";
 		}
+	 
+	 @RequestMapping(value = "/cook/deletesalad//{Id}", method = RequestMethod.GET)
+	   public String deletesalad( @PathVariable("Id") Long Id,   @ModelAttribute Department department, @ModelAttribute Role role,  Model model, RedirectAttributes redirectAttributes) {
+		 String msg = saladService.delete(Id);
+		 redirectAttributes.addFlashAttribute("msg", "setMsg('" + msg + "')");
+ return "redirect:/cook/order";
+	    }
 	 
 	 @RequestMapping(value = "/cook/saladform", method = RequestMethod.POST)
 	    public String saladform(@ModelAttribute Salad salad, Model model, RedirectAttributes redirectAttributes) {
@@ -113,7 +136,7 @@ public class MenuController {
 	 //Submitted Orders
 	 @RequestMapping(value = "/cook/subOrder", method = RequestMethod.GET)
 	  	public String suborders(@AuthenticationPrincipal Login login, Model model) {
-		 model.addAttribute("subOrderss", this.subOrdersService.findAll());
+		 model.addAttribute("subOrderss", this.subOrdersService.findByDate());
 	  		return "/cook/subOrder";
 	  	}
 	 

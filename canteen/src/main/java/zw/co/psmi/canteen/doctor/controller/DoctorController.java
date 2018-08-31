@@ -5,6 +5,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -13,6 +14,7 @@ import zw.co.psmi.canteen.admin.entity.Department;
 import zw.co.psmi.canteen.admin.entity.Diagnosis;
 import zw.co.psmi.canteen.admin.entity.Gender;
 import zw.co.psmi.canteen.admin.entity.Nationality;
+import zw.co.psmi.canteen.admin.entity.Role;
 import zw.co.psmi.canteen.admin.entity.Salutation;
 import zw.co.psmi.canteen.admin.service.DepartmentService;
 import zw.co.psmi.canteen.admin.service.DiagnosisService;
@@ -69,7 +71,12 @@ public class DoctorController {
 	        model.addAttribute("patientss", this.patientService.findAll());	
 			return "/doctor/patients";
 		}
-	 
+	 @RequestMapping(value = "/doctor/deletepatient/{Id}", method = RequestMethod.GET)
+	   public String deletepatient( @PathVariable("Id") Long Id,   @ModelAttribute Department department, @ModelAttribute Role role,  Model model, RedirectAttributes redirectAttributes) {
+		 String msg = patientService.delete(Id);
+		 redirectAttributes.addFlashAttribute("msg", "setMsg('" + msg + "')");
+       return "redirect:/doctor/patients";
+	    }
 	 
 	 @RequestMapping(value = "/doctor/addpatient", method = RequestMethod.GET)
 		public String addpatient(@ModelAttribute Patient patient,   @ModelAttribute Department department, @ModelAttribute Gender gender, @ModelAttribute Salutation salutation,  @ModelAttribute Nationality nationality,  @ModelAttribute Diagnosis diagnosis, @ModelAttribute ActiveStatus activeStatus, Model model) {       

@@ -5,4 +5,5 @@ import zw.co.psmi.canteen.cook.entity.Starch;
 
 public interface StarchService extends BasicService<Starch>{
 	public	Starch findByStarchName(String starchName);
+	String delete(long id);
 }

@@ -30,13 +30,13 @@
            <div class = "row">
 		  <div class="col-lg-6 col-md-6 col-sm-6" align='right'>Starch</div>
 		  <div class="col-lg-6 col-md-6 col-sm-6">
-          <select  data-live-search="true"  class="form-control" th:field="${subOrderss.starch}" required = "required">
+          <select class="form-control" th:field="${subOrderss.starch}" required = "required" >
            <option value="">- - - -  select - - - -</option> 
                   <option th:each="starch : ${starchs}"
                    th:value="${starch.id}" 
                    th:text="${starch.starchName}">
                   </option> 
-          </select>
+          </select>    
 		  </div>
            </div>
                 <br />   
@@ -44,7 +44,7 @@
                <div class = "row">
 		  <div class="col-lg-6 col-md-6 col-sm-6" align='right'>Protein</div>
 		  <div class="col-lg-6 col-md-6 col-sm-6">
-          <select  data-live-search="true" class="form-control" th:field="${subOrderss.relish}" required = "required">
+          <select data-live-search="true" class="form-control" th:field="${subOrderss.relish}" required = "required">
            <option value="">- - - -  select - - - -</option> 
                   <option th:each="relish : ${relishs}" 
                    th:value="${relish.id}" 

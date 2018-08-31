@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import zw.co.psmi.canteen.admin.dao.RoleDao;
 import zw.co.psmi.canteen.admin.entity.Role;
 import zw.co.psmi.canteen.admin.service.RoleService;
+import zw.co.psmi.canteen.auth.entity.User;
 
 
 @Service
@@ -30,6 +31,12 @@ public class RoleServiceImpl implements RoleService{
 	    public String save(Role role) {
 	    	this.roleDao.save(role);
 	        return "Sucessfully saved Role";
+	    }
+	    
+	    @Override
+	    public String delete(long id) {
+	        this.roleDao.delete(id);
+	        return "Sucessfully deleted role";
 	    }
 
 	    @Override

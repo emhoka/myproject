@@ -29,6 +29,12 @@ public class SaladServiceImpl implements SaladService{
        this.saladDao.save(salad);
         return "Sucessfully saved Salad";
     }
+    
+    @Override
+    public String delete(long id) {
+        this.saladDao.delete(id);
+        return "Sucessfully deleted salad";
+    }
 
     @Override
     public Salad getByID(Long saladID) {

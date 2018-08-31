@@ -8,4 +8,6 @@ import zw.co.psmi.canteen.basic.BasicService;
 public interface UserService extends BasicService<User>{
 public User findByUsername(String username);
 
+String delete(long id);
+
 }

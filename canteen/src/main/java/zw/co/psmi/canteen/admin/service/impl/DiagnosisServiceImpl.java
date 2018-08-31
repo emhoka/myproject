@@ -60,6 +60,21 @@ public class DiagnosisServiceImpl implements DiagnosisService{
 		        return diagnosisDao.findAll();
 		    }
 
+		@Override
+		public List<Diagnosis> findBySearch(String name) {
+			name = name.trim();
+	        String[] arr = name.split(" ");
+	        if(arr.length == 3)
+	           {
+	            diagnosisDao.findTop100ByNameContainingOrNameContainingOrNameContaining(arr[0], arr[1], arr[2]);
+	           }
+	        else if(arr.length == 2)
+	           {
+	           diagnosisDao.findTop100ByNameContainingOrNameContaining(arr[0], arr[1]);
+	           }
+	        return diagnosisDao.findTop100ByNameContaining(arr[0]);
+		}
+
 	
 	
 }

@@ -29,6 +29,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     	this.departmentDao.save(department);
         return "Sucessfully saved Department";
     }
+    
+    @Override
+    public String delete(long id) {
+        this.departmentDao.delete(id);
+        return "Sucessfully deleted department";
+    }
+     
 
     @Override
     public Department getByID(Long departmentID) {

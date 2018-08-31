@@ -28,11 +28,11 @@ public class BaseEntity implements Serializable{
 	   public String getAuditDetails(){
 	       return toString();
 	   }
-	   
-	   
-
-	    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	   
+	    
+	    private static final DateTimeFormatter cdate = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+	    @Column(name = "creation_date", updatable = false)
+	    private String creationDate;
+	      
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    protected long id;
@@ -44,6 +44,7 @@ public class BaseEntity implements Serializable{
 	    @PrePersist
 	    public void prePersist() {
 	        this.creationTime = dtf.format(LocalDateTime.now());
+	        this.creationDate = cdate.format(LocalDateTime.now());
 	        }
 
 		public long getId() {

@@ -31,6 +31,11 @@ public class PatientServiceImpl implements PatientService{
 	        this.patientDao.save(patient);
 	        return "Sucessfully saved patient";
 	    }
+	    @Override
+	    public String delete(long id) {
+	        this.patientDao.delete(id);
+	        return "Sucessfully deleted Patient";
+	    }
 
 	    @Override
 	    public Patient getByID(Long userID) {

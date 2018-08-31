@@ -34,27 +34,26 @@
                  <table class="table center-aligned-table">
 			<thead>
                     <tr>
-                         <th>Patient ID</th>
                          <th>Name</th>
 						 <th>Gender</th>
-						 <th>Nationality</th>
 						 <th>ID Number</th>
 						 <th>Diagnosis</th>
-						 <th>Location</th>
-                         <th>Active</th>
+						 <th>Department</th>
+						 <th>Destination</th>
+                         <th>Delete</th>
                     </tr>
             </thead>
 			
 <tbody>
  <tr data-th-each="patients : ${patientss}">
-        <td data-th-text="${patients.id}">...</td>
-        <td data-th-text="${patients.name}"> ...</td>
+        <td data-th-text="${patients.name} +' '+ ${patients.surname}"> ...</td>
         <td data-th-text="${patients.gender?.name}">...</td>
-        <td data-th-text="${patients.nationality?.name}">...</td>
         <td data-th-text="${patients.national_id}">...</td>
         <td data-th-text="${patients.diagnosis?.name}">...</td>
-        <td data-th-text="${patients.department?.departmentName}">...</td>
-         <td data-th-text="${patients.activeStatus?.name}">...</td>
+        <td data-th-text="${patients.department?.departmentName} + '  -  ' + ${patients.department?.subDepartment}">...</td>
+        <td data-th-text="${patients.department?.location}">...</td>
+          <td><a th:href="@{'/doctor/deletepatient/' + ${patients.id}}"> <span class="glyphicon glyphicon-remove-circle text-danger" title="delete"></span></a>
+        </td>
        
 </tr>
 </tbody>

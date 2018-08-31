@@ -31,6 +31,11 @@ public class RelishServiceImpl implements RelishService{
 	    }
 
 	    @Override
+	    public String delete(long id) {
+	        this.relishDao.delete(id);
+	        return "Sucessfully deleted protein";
+	    }
+	    @Override
 	    public Relish getByID(Long relishID) {
 	    	Relish relish = this.relishDao.findOne(relishID);
 	        if (relish == null) {

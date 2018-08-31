@@ -7,5 +7,6 @@ import zw.co.psmi.canteen.basic.BasicService;
 
 public interface DepartmentService extends BasicService<Department>{
 	public	Department findByDepartmentName(String departmentName);
+	String delete(long id);
 
 }

@@ -2,24 +2,24 @@
  
 <ul class="nav">
  <li class="nav-item nav-profile">
+  <div th:with="login=${@user}">
    <div class="user-info">
            <div class="nav-link">
               <div class="user-wrapper">
                 <div class="profile-image">
-                  <img src="/images/er.jpg" alt="profile image"/>
+                <img src="/images/er.jpg" alt="profile image"/>
                 </div>
                 <div class="text-wrapper">
-                  <p class="profile-name">Cary Mickles</p>
+                  <p class="profile-name" ><a th:text = "${login?.name} +' '+ ${login?.surname}"></a></p>
                   <div>
-                    <small class="designation text-muted">Doctor</small>
+                    <small class="designation text-muted"><a th:text = "${login?.role?.roleName}"></a></small>
                     <span class="status-indicator online"></span>
                   </div>
                 </div>
               </div>
                    <a  th:href="@{/doctor/userprofile}" class="btn btn-success btn-block">Visit Profile</a>
             </div>
-         
-            </div>
+</div></div>
             </li>
 <li class="nav-item">
               <a class="nav-link" th:href="@{/doctor/docview}">
@@ -35,27 +35,7 @@
                 <span class="menu-title">Patients</span>
               </a>
             </li>
-               <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#sample-pages" aria-expanded="false" aria-controls="sample-pages">
-                <i class = "glyphicon glyphicon-cog text-muted" >
-                <img src="" alt="" /></i>
-                <span class="menu-title">Settings<i class="fa fa-sort-down"></i></span>
-              </a>
-              <div class="collapse" id="sample-pages">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      Change password
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      Logout
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
+             
           </ul>
           
         </nav>

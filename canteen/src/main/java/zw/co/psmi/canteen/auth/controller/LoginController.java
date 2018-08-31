@@ -1,6 +1,12 @@
 package zw.co.psmi.canteen.auth.controller;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +21,7 @@ import zw.co.psmi.canteen.auth.entity.Login;
 import zw.co.psmi.canteen.auth.entity.User;
 import zw.co.psmi.canteen.auth.service.UserService;
 
+
 @Controller
 @Slf4j
 public class LoginController {
@@ -24,7 +31,6 @@ private UserService userService;
     public ModelAndView index(ModelAndView model) {
         SecurityContextHolder.clearContext();
         model.addObject("user", new User());
-        
         model.setViewName("index");
         return model;
     }
@@ -41,24 +47,40 @@ private UserService userService;
     public String roleAsses(Model model, @AuthenticationPrincipal Login login) {
     	String username = login.getUsername();
     	User user = userService.findByUsername(username);
-        if(user.getRole().getRoleName().toLowerCase().equals("cook")){       	
-            return "/cook/cookview";
-        }else if(user.getRole().getRoleName().toLowerCase().equals("patient")){        	
-            return "/users/userview";
-        }else if(user.getRole().getRoleName().toLowerCase().equals("dietician")){       	
-            return "/dietician/dieticianview";
-        }else if(user.getRole().getRoleName().toLowerCase().equals("doctor")){       	
-            return "/doctor/docview";
-        }
-        else if(user.getRole().getRoleName().toLowerCase().equals("staff")){       	
-            return "/users/userview";
-        }
-        else if(user.getRole().getRoleName().toLowerCase().equals("administrator")){       	
-            return "/admin/adminiview";
-        }
+    	 if(user.getRole().getRoleName().toLowerCase().equals("cook")){       	
+             return "/cook/cookview";
+         }else if(user.getRole().getRoleName().toLowerCase().equals("patient")){        	
+             return "/users/userview";
+         }else if(user.getRole().getRoleName().toLowerCase().equals("dietician")){       	
+             return "/dietician/dieticianview";
+         }else if(user.getRole().getRoleName().toLowerCase().equals("doctor")){       	
+             return "/doctor/docview";
+         }
+         else if(user.getRole().getRoleName().toLowerCase().equals("staff")){       	
+             return "/users/userview";
+         }
+         else if(user.getRole().getRoleName().toLowerCase().equals("admin")){       	
+             return "/admin/adminiview";
+         }
         return "index";
    }
     
+@Bean
+@Scope("prototype")
+@Qualifier("user")
+public User user() {
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication != null && authentication.isAuthenticated()) {
+            	return userService.findByUsername(((Login) authentication.getPrincipal()).getUsername());
+            }
+        } catch (Exception e) {
+        	System.out.printf("AuthenticationError:" + e.getMessage());
+        }
+        return null;
+    }
+
+
 
 
 }

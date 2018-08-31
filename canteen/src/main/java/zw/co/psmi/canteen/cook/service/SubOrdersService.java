@@ -8,5 +8,5 @@ import zw.co.psmi.canteen.cook.entity.SubOrders;
 
 public interface SubOrdersService extends BasicService<SubOrders>{
 	public List<SubOrders> findAll();
-
+	public List<SubOrders> findByDate();
 }

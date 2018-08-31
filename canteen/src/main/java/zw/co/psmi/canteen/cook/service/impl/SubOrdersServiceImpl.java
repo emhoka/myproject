@@ -1,5 +1,7 @@
 package zw.co.psmi.canteen.cook.service.impl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.slf4j.LoggerFactory;
@@ -83,6 +85,16 @@ public class SubOrdersServiceImpl implements SubOrdersService{
 		    public List<SubOrders> findAll() {
 		        return subOrdersDao.findAll();
 		    }
+
+		@Override
+		public List<SubOrders> findByDate() {
+			// TODO Auto-generated method stub
+			String creationDate;
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			creationDate = dtf.format(LocalDateTime.now());
+		
+			return subOrdersDao.findByCreationDate(creationDate);
+		}
 
 
 }

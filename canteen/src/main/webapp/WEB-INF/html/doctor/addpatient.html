@@ -1,133 +1,158 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
-<head lang="en" th:replace="head :: head"> </head>
-<body> 
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="head :: head">
+</head>
+<body>
 
- <div class=" container-scroller">
-  <nav th:replace ="header::header"></nav>
-           
-   <div class="container-fluid">
-     <div class="row row-offcanvas row-offcanvas-right">
-     <nav th:replace ="docsidebar::docsidebar"></nav> 
-         <div class="content-wrapper">
-          <h4 class="page-heading mb-4">Add Patient</h4>
-                <div id="msg"></div> 
-<div class="line"></div>
-                 <form  th:action="@{/doctor/addpatientform}" th:object="${patient}" method="post"> 
-           <div class="well" > 
-           <br />
-               <div class="row">
-               
-                 <div class="col-lg-4 col-md-4 col-sm-4">
-                                <label  for="dateOfBirth">Date of Birth (yyyy-mm-dd)</label>
-                              <input type="text" class="form-control" th:field="${patient.dob}"  pattern-custom="yyyy-mm-dd" required="required"/>
-                 </div>
-                 
-                 <div class="col-lg-4 col-md-4 col-sm-4">
-                                <label for="surname">Nationality</label>
-             <select  data-live-search="true" class="form-control" th:field="${patient.nationality}" required = "required">
-          <option value="">- - - - select - - - -</option> 
-                  <option th:each="nationality : ${nationalitys}" 
-                   th:value="${nationality.id}" 
-                   th:text="${nationality.name}">
-                  </option> 
-          </select>
-                 </div>
-                 
-                 <div class="col-lg-4 col-md-4 col-sm-4">
-                                <label for="surname">Salutation</label>
-                      <select  data-live-search="true" class="form-control" th:field="${patient.salutation}" required = "required">
-          <option value="">- - - - select - - - -</option> 
-                  <option th:each="salutation : ${salutations}" 
-                   th:value="${salutation.id}" 
-                   th:text="${salutation.name}">
-                  </option> 
-          </select>
-                 </div>
-             </div>
-                      <br />
-                <div class="row">
-                
-                  <div class="col-lg-4 col-md-4 col-sm-4">
-                                <label for="surname">Surname</label>
-                              <input type="text"  class="form-control" th:field="${patient.surname}" required="required" placeholder = "Enter surname"/>
-                 </div>
-                 
-                 <div class="col-lg-4 col-md-4 col-sm-4">
-                                <label for="surname">Firstname</label>
-                          <input type="text"  class="form-control" th:field="${patient.name}" required="required" placeholder = "Enter firstname"/>
-                 </div>
-                 
-                 <div class="col-lg-4 col-md-4 col-sm-4">
-                                <label for="surname">Phone</label>
-                             <input type="text"  class="form-control" th:field="${patient.phone}" required="required" placeholder = "Enter middlename"/>
-                 </div>
-                </div>
-                      <br />
-                      <div class="row">
-                
-                  <div class="col-lg-4 col-md-4 col-sm-4">
-                                <label for="surname">National ID Number</label>
-                              <input type="text"  class="form-control" th:field="${patient.national_id}" required="required" placeholder = "Enter national ID"/>
-                 </div>
-                 
-                 <div class="col-lg-4 col-md-4 col-sm-4">
-                                <label for="surname">Passport</label>
-                          <input type="text"  class="form-control" th:field="${patient.passport}" required="required" placeholder = "Enter passport number"/>
-                 </div>
-                 
-                 <div class="col-lg-4 col-md-4 col-sm-4">
-                                <label for="surname">Gender</label>
-             <select  data-live-search="true" class="form-control" th:field="${patient.gender}" required = "required">
-          <option value="">- - - - select - - - -</option> 
-                  <option th:each="gender : ${genders}" 
-                   th:value="${gender.id}" 
-                   th:text="${gender.name}">
-                  </option> 
-          </select>
-                 </div>
-                </div>
-                      <br />
-                  <div class="row">
-                 
-                 <div class="col-lg-4 col-md-4 col-sm-4">
-                                <label for="surname">Department</label>
-        <select  data-live-search="true" class="form-control" th:field="${patient.department}" required = "required">
-          <option value="">- - - - select - - - -</option> 
-                  <option th:each="department : ${departments}" 
-                   th:value="${department.id}" 
-                   th:text="${department.departmentName}">
-                  </option> 
-          </select>
-                 </div>
-                 
-                   <div class="col-lg-4 col-md-4 col-sm-4">
-                                <label for="surname">Active Status</label>
-        <select  data-live-search="true" class="form-control" th:field="${patient.activeStatus}" required = "required">
-       
-                  <option th:each="activeStatus : ${activeStatuss}" 
-                   th:value="${activeStatus.id}" 
-                   th:text="${activeStatus.name}">
-                  </option> 
-          </select>
-                 </div>
-                  </div>
-       
-                <br />
-                      <br />         
-  <div class="panel panel-info" >              
- <div class="panel-heading" >
-            <a data-toggle="collapse" data-parent="#accordion" th:href="@{#filterPanel}" th:style = "'color:black; font-weight:bold;'">DIAGNOSIS
-            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" th:href="@{#filterPanel}">
-                <i class="glyphicon glyphicon-chevron-down"></i>
-            </span>
-           </a>
-</div>
+	<div class=" container-scroller">
+		<nav th:replace="header::header"></nav>
 
- <div id="filterPanel" class="panel-collapse panel-collapse collapse">
-        <div class="panel-body">
-        
-     <div class="row">
+		<div class="container-fluid">
+			<div class="row row-offcanvas row-offcanvas-right">
+				<nav th:replace="docsidebar::docsidebar"></nav>
+				<div class="content-wrapper">
+					<h4 class="page-heading mb-4">Add Patient</h4>
+					<div id="msg"></div>
+					<div class="line"></div>
+					<form th:action="@{/doctor/addpatientform}" th:object="${patient}"
+						method="post">
+						<div class="well">
+							<br />
+							<div class="row">
+
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="dateOfBirth">Date of Birth (yyyy-mm-dd)</label> <input
+										type="text" class="form-control" th:field="${patient.dob}"
+										pattern-custom="yyyy-mm-dd" required="required" />
+								</div>
+
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="surname">Nationality</label> <select
+										data-live-search="true" class="form-control"
+										th:field="${patient.nationality}" required="required">
+										<option value="">- - - - select - - - -</option>
+										<option th:each="nationality : ${nationalitys}"
+											th:value="${nationality.id}" th:text="${nationality.name}">
+										</option>
+									</select>
+								</div>
+
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="surname">Salutation</label> <select
+										data-live-search="true" class="form-control"
+										th:field="${patient.salutation}" required="required">
+										<option value="">- - - - select - - - -</option>
+										<option th:each="salutation : ${salutations}"
+											th:value="${salutation.id}" th:text="${salutation.name}">
+										</option>
+									</select>
+								</div>
+							</div>
+							<br />
+							<div class="row">
+
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="surname">Surname</label> <input type="text"
+										class="form-control" th:field="${patient.surname}"
+										required="required" placeholder="Enter surname" />
+								</div>
+
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="surname">Firstname</label> <input type="text"
+										class="form-control" th:field="${patient.name}"
+										required="required" placeholder="Enter firstname" />
+								</div>
+
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="surname">Phone</label> <input type="text"
+										class="form-control" th:field="${patient.phone}"
+										required="required" placeholder="Enter middlename" />
+								</div>
+							</div>
+							<br />
+							<div class="row">
+
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="surname">National ID Number</label> <input
+										type="text" class="form-control"
+										th:field="${patient.national_id}" required="required"
+										placeholder="Enter national ID" />
+								</div>
+
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="surname">Passport</label> <input type="text"
+										class="form-control" th:field="${patient.passport}"
+										required="required" placeholder="Enter passport number" />
+								</div>
+
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="surname">Gender</label> <select
+										data-live-search="true" class="form-control"
+										th:field="${patient.gender}" required="required">
+										<option value="">- - - - select - - - -</option>
+										<option th:each="gender : ${genders}" th:value="${gender.id}"
+											th:text="${gender.name}"></option>
+									</select>
+								</div>
+							</div>
+							<br />
+							<div class="row">
+
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="surname">Department</label> <select
+										data-live-search="true" class="form-control"
+										th:field="${patient.department}" required="required">
+										<option value="">- - - - select - - - -</option>
+										<option th:each="department : ${departments}"
+											th:value="${department.id}"
+											th:text="${department.departmentName}"></option>
+									</select>
+								</div>
+
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="surname">Active Status</label> <select
+										data-live-search="true" class="form-control"
+										th:field="${patient.activeStatus}" required="required">
+
+										<option th:each="activeStatus : ${activeStatuss}"
+											th:value="${activeStatus.id}" th:text="${activeStatus.name}">
+										</option>
+									</select>
+								</div>
+							</div>
+
+							<br /> <br />
+							<div class="panel panel-info">
+								<div class="panel-heading">
+									<a data-toggle="collapse" data-parent="#accordion"
+										th:href="@{#filterPanel}"
+										th:style="'color:black; font-weight:bold;'">DIAGNOSIS <span
+										class="pull-right panel-collapse-clickable"
+										data-toggle="collapse" data-parent="#accordion"
+										th:href="@{#filterPanel}"> <i
+											class="glyphicon glyphicon-chevron-down"></i>
+									</span>
+									</a>
+								</div>
+
+								<div id="filterPanel"
+									class="panel-collapse panel-collapse collapse">
+									<div class="panel-body">
+
+										<div class="row">
+											<div class="col-lg-2 col-md-2 col-sm-2" align="right">Diagnosis</div>
+											<div class="col-lg-10 col-md-10 col-sm-10">
+												<input class="form-control" type="text"
+													onkeyup="getDiagnosisListBySearch(this)"
+													id="diagnosisSearch" placeholder="Search Diagnosis List" />
+												<div id="diagnosisList"></div>
+											</div>
+										</div>
+
+										<br />
+
+			<!--  <div class="row">
                   <div class="col-lg-4 col-md-4 col-sm-4" align="right">Diagnosis</div>
                   <div class="col-lg-8 col-md-8 col-sm-8">
            <select  data-live-search="true" class="form-control" th:field="${patient.diagnosis}" required = "required">
@@ -138,35 +163,35 @@
                   </option> 
           </select>   
                   </div>
-      </div>
-              <br />    
+      </div>  -->
 
- </div>  
 
-</div>
-</div>  
-           </div>
+									</div>
 
-            
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6" align='right'> 
-                    <button type="submit" value="submit" class="btn btn-primary">Submit</button>
-                    </div>
-           
-                    <div class="col-lg-6 col-md-6 col-sm-6"> 
-                   <a  th:href="@{/doctor/patients}" class="btn btn-primary">Cancel</a>
-                   </div>
-                 </div>
-          
-</form>             
-           </div>
-         </div>
-         </div>
-         
-         
-  <div th:replace ="footer::footer"></div>
- </div>  
-<script th:utext="${msg}"></script>
+								</div>
+							</div>
+						</div>
 
- </body>
+
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6" align='right'>
+								<button type="submit" value="submit" class="btn btn-primary">Submit</button>
+							</div>
+
+							<div class="col-lg-6 col-md-6 col-sm-6">
+								<a th:href="@{/doctor/patients}" class="btn btn-primary">Cancel</a>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+
+
+		<div th:replace="footer::footer"></div>
+	</div>
+	<script th:utext="${msg}"></script>
+
+</body>
 </html>

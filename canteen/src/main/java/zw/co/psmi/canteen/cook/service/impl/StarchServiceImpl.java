@@ -29,6 +29,11 @@ public class StarchServiceImpl implements StarchService{
 	       this.starchDao.save(starch);
 	        return "Sucessfully saved Starch";
 	    }
+	    @Override
+	    public String delete(long id) {
+	        this.starchDao.delete(id);
+	        return "Sucessfully deleted starch";
+	    }
 
 	    @Override
 	    public Starch getByID(Long starchID) {

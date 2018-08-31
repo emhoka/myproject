@@ -21,7 +21,7 @@
 <form>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-9">
-   <a th:href="@{/admin/createuser}"><span class="glyphicon glyphicon-plus" title="create user"></span></a>
+   <a th:href="@{/admin/createuser}"><span class="glyphicon glyphicon-plus" title="Add user"></span></a>
    </div>
     <div class="col-lg-3 col-md-3 col-sm-3">
      <input class="form-control" id="system-search" name="q" placeholder="Search for" required = "required"/>
@@ -34,25 +34,29 @@
                  <table class="table center-aligned-table">
 			<thead>
                     <tr>
+                    
                          <th>User ID</th>
                          <th>Name</th>
 						 <th>Username</th>
 						 <th>Department</th>
 						 <th>Role</th>
 						 <th>Creation Date</th>
-                         <th>Action</th>
+						 <th>Edit</th>
+                         <th>Delete</th>
                     </tr>
             </thead>
 			
 <tbody>
  <tr data-th-each="users : ${userss}">
+ 
         <td data-th-text="${users.id}">...</td>
         <td data-th-text="${users.name} +' '+ ${users.surname}">...</td>
         <td data-th-text="${users.username}">...</td>
         <td data-th-text="${users.department?.departmentName} + '  -  ' + ${users.department?.subDepartment}">...</td>
         <td data-th-text="${users.role?.roleName}">...</td>
         <td data-th-text="${users.creationTime}">...</td>
-        <td>&nbsp;<a th:href="@{'/admin/createuser/'}"> <span class="glyphicon glyphicon-edit" title="edit"></span></a>
+        <td><a th:href="@{'/admin/edituser/' + ${users.id}}"> <span class="glyphicon glyphicon-edit" title="edit"></span></a></td>
+        <td><a th:href="@{'/admin/deleteuser/' + ${users.id}}"> <span class="glyphicon glyphicon-remove-circle text-danger" title="delete"></span></a>
         </td>
 </tr>
 </tbody>

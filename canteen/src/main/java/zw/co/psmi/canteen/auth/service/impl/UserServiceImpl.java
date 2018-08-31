@@ -33,9 +33,15 @@ public class UserServiceImpl implements UserService {
     public String save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         this.userDao.save(user);
-        return "Sucessfully saved User";
+                return "Sucessfully saved User";
     }
 
+@Override
+public String delete(long id) {
+    this.userDao.delete(id);
+    return "Sucessfully deleted User";
+}
+    
     @Override
     public User getByID(Long userID) {
         User user = this.userDao.findOne(userID);
